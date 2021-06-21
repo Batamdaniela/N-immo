@@ -1,0 +1,15 @@
+
+
+#lancer le server
+
+symfony server:start -d --port=8080
+
+symfony open:local
+
+
+#creer des ressources publiques
+$ php -r "copy('http://clipartmag.com/images/website-under-construction-image-6.gif', 'public/images/under-construction.gif');"
+
+#symfony cloud
+symfony project:init
+
