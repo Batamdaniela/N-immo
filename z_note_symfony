@@ -13,3 +13,17 @@ $ php -r "copy('http://clipartmag.com/images/website-under-construction-image-6.
 #symfony cloud
 symfony project:init
 
+
+
+#controller
+
+symfony composer req maker --dev
+
+symfony console make:controller
+
+ symfony composer req annotations
+
+# Supprimer complètement Entity de symfony 4
+php bin/console make:migration:diffgénère la migration en comparant la base de données et vos informations
+
+
