@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossier{% endblock %}
+
+{% block body %}
+    <h1>Dossier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossier.id }}</td>
+            </tr>
+            <tr>
+                <th>Quartiers</th>
+                <td>{{ dossier.quartiers }}</td>
+            </tr>
+            <tr>
+                <th>Villes</th>
+                <td>{{ dossier.villes }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ dossier.pays }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ dossier.montant }}</td>
+            </tr>
+            <tr>
+                <th>Montant_min</th>
+                <td>{{ dossier.montantMin }}</td>
+            </tr>
+            <tr>
+                <th>Montant_max</th>
+                <td>{{ dossier.montantMax }}</td>
+            </tr>
+            <tr>
+                <th>Cout</th>
+                <td>{{ dossier.cout }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ dossier.etat }}</td>
+            </tr>
+            <tr>
+                <th>Date_expiration</th>
+                <td>{{ dossier.dateExpiration ? dossier.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{{ dossier.dateCreation ? dossier.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_paiement</th>
+                <td>{{ dossier.datePaiement ? dossier.datePaiement|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossier_index') }}">back to list</a>
+
+    <a href="{{ path('dossier_edit', {'id': dossier.id}) }}">edit</a>
+
+    {{ include('dossier/_delete_form.html.twig') }}
+{% endblock %}

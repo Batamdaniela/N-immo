@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Caracteristique{% endblock %}
+
+{% block body %}
+    <h1>Caracteristique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ caracteristique.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ caracteristique.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ caracteristique.description }}</td>
+            </tr>
+            <tr>
+                <th>Data_type</th>
+                <td>{{ caracteristique.dataType }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ caracteristique.date ? caracteristique.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('caracteristique_index') }}">back to list</a>
+
+    <a href="{{ path('caracteristique_edit', {'id': caracteristique.id}) }}">edit</a>
+
+    {{ include('caracteristique/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DossierCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>Create new DossierCaracteristique</h1>
+
+    {{ include('dossier_caracteristique/_form.html.twig') }}
+
+    <a href="{{ path('dossier_caracteristique_index') }}">back to list</a>
+{% endblock %}

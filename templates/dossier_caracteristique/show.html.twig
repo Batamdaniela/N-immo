@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DossierCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>DossierCaracteristique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossier_caracteristique.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ dossier_caracteristique.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ dossier_caracteristique.description }}</td>
+            </tr>
+            <tr>
+                <th>Valeur</th>
+                <td>{{ dossier_caracteristique.valeur }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ dossier_caracteristique.date ? dossier_caracteristique.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossier_caracteristique_index') }}">back to list</a>
+
+    <a href="{{ path('dossier_caracteristique_edit', {'id': dossier_caracteristique.id}) }}">edit</a>
+
+    {{ include('dossier_caracteristique/_delete_form.html.twig') }}
+{% endblock %}

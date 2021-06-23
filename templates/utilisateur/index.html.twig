@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone1</th>
+                <th>Telephone2</th>
+                <th>Email</th>
+                <th>Quartier</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Profession</th>
+                <th>Entreprise</th>
+                <th>Date_connection</th>
+                <th>Type</th>
+                <th>Date_creation</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.telephone1 }}</td>
+                <td>{{ utilisateur.telephone2 }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <td>{{ utilisateur.quartier }}</td>
+                <td>{{ utilisateur.ville }}</td>
+                <td>{{ utilisateur.pays }}</td>
+                <td>{{ utilisateur.profession }}</td>
+                <td>{{ utilisateur.entreprise }}</td>
+                <td>{{ utilisateur.dateConnection ? utilisateur.dateConnection|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ utilisateur.type }}</td>
+                <td>{{ utilisateur.dateCreation ? utilisateur.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ utilisateur.photo }}</td>
+                <td>
+                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
+                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_new') }}">Create new</a>
+{% endblock %}

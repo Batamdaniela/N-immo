@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+    <h1>Recherche</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ recherche.id }}</td>
+            </tr>
+            <tr>
+                <th>Mot_cle</th>
+                <td>{{ recherche.motCle }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ recherche.date ? recherche.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('recherche_index') }}">back to list</a>
+
+    <a href="{{ path('recherche_edit', {'id': recherche.id}) }}">edit</a>
+
+    {{ include('recherche/_delete_form.html.twig') }}
+{% endblock %}

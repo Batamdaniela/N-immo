@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ article.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Cout</th>
+                <td>{{ article.cout }}</td>
+            </tr>
+            <tr>
+                <th>Periodicite</th>
+                <td>{{ article.periodicite }}</td>
+            </tr>
+            <tr>
+                <th>Quartier</th>
+                <td>{{ article.quartier }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ article.ville }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ article.pays }}</td>
+            </tr>
+            <tr>
+                <th>Disponible</th>
+                <td>{{ article.disponible ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ article.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ article.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Vente</th>
+                <td>{{ article.vente ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('article_index') }}">back to list</a>
+
+    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+
+    {{ include('article/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossier index{% endblock %}
+
+{% block body %}
+    <h1>Dossier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quartiers</th>
+                <th>Villes</th>
+                <th>Pays</th>
+                <th>Montant</th>
+                <th>Montant_min</th>
+                <th>Montant_max</th>
+                <th>Cout</th>
+                <th>Etat</th>
+                <th>Date_expiration</th>
+                <th>Date_creation</th>
+                <th>Date_paiement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dossier in dossiers %}
+            <tr>
+                <td>{{ dossier.id }}</td>
+                <td>{{ dossier.quartiers }}</td>
+                <td>{{ dossier.villes }}</td>
+                <td>{{ dossier.pays }}</td>
+                <td>{{ dossier.montant }}</td>
+                <td>{{ dossier.montantMin }}</td>
+                <td>{{ dossier.montantMax }}</td>
+                <td>{{ dossier.cout }}</td>
+                <td>{{ dossier.etat }}</td>
+                <td>{{ dossier.dateExpiration ? dossier.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dossier.dateCreation ? dossier.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dossier.datePaiement ? dossier.datePaiement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('dossier_show', {'id': dossier.id}) }}">show</a>
+                    <a href="{{ path('dossier_edit', {'id': dossier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossier_new') }}">Create new</a>
+{% endblock %}
