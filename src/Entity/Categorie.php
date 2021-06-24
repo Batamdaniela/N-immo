@@ -49,11 +49,17 @@ class Categorie
      */
     private $dossierCategories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Recherche::class, mappedBy="categorie")
+     */
+    private $recherches;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->dossierCategories = new ArrayCollection();
+        $this->recherches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,6 +187,36 @@ class Categorie
             // set the owning side to null (unless already changed)
             if ($dossierCategory->getCategorie() === $this) {
                 $dossierCategory->setCategorie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recherche[]
+     */
+    public function getRecherches(): Collection
+    {
+        return $this->recherches;
+    }
+
+    public function addRecherch(Recherche $recherch): self
+    {
+        if (!$this->recherches->contains($recherch)) {
+            $this->recherches[] = $recherch;
+            $recherch->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecherch(Recherche $recherch): self
+    {
+        if ($this->recherches->removeElement($recherch)) {
+            // set the owning side to null (unless already changed)
+            if ($recherch->getCategorie() === $this) {
+                $recherch->setCategorie(null);
             }
         }
 

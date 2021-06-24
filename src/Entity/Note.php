@@ -32,6 +32,11 @@ class Note
      */
     private $utilisateur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="notes")
+     */
+    private $article;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Note
     public function setUtilisateur(?Utilisateur $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
 
         return $this;
     }

@@ -119,6 +119,11 @@ class Article
      */
     private $optionArticles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="article")
+     */
+    private $notes;
+
     public function __construct()
     {
         $this->visites = new ArrayCollection();
@@ -126,6 +131,7 @@ class Article
         $this->favoris = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->optionArticles = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -457,6 +463,36 @@ class Article
             // set the owning side to null (unless already changed)
             if ($optionArticle->getArticle() === $this) {
                 $optionArticle->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getArticle() === $this) {
+                $note->setArticle(null);
             }
         }
 

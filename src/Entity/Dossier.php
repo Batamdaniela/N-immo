@@ -34,13 +34,9 @@ class Dossier
      */
     private $pays;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $montant;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $montant_min;
 
@@ -84,9 +80,15 @@ class Dossier
      */
     private $dossierCategories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=DossierCarateristique::class, mappedBy="dossier")
+     */
+    private $dossierCarateristiques;
+
     public function __construct()
     {
         $this->dossierCategories = new ArrayCollection();
+        $this->dossierCarateristiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,24 +132,12 @@ class Dossier
         return $this;
     }
 
-    public function getMontant(): ?string
-    {
-        return $this->montant;
-    }
-
-    public function setMontant(string $montant): self
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
-
-    public function getMontantMin(): ?string
+    public function getMontantMin(): ?int
     {
         return $this->montant_min;
     }
 
-    public function setMontantMin(string $montant_min): self
+    public function setMontantMin(int $montant_min): self
     {
         $this->montant_min = $montant_min;
 
@@ -262,6 +252,36 @@ class Dossier
             // set the owning side to null (unless already changed)
             if ($dossierCategory->getDossier() === $this) {
                 $dossierCategory->setDossier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DossierCarateristique[]
+     */
+    public function getDossierCarateristiques(): Collection
+    {
+        return $this->dossierCarateristiques;
+    }
+
+    public function addDossierCarateristique(DossierCarateristique $dossierCarateristique): self
+    {
+        if (!$this->dossierCarateristiques->contains($dossierCarateristique)) {
+            $this->dossierCarateristiques[] = $dossierCarateristique;
+            $dossierCarateristique->setDossier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDossierCarateristique(DossierCarateristique $dossierCarateristique): self
+    {
+        if ($this->dossierCarateristiques->removeElement($dossierCarateristique)) {
+            // set the owning side to null (unless already changed)
+            if ($dossierCarateristique->getDossier() === $this) {
+                $dossierCarateristique->setDossier(null);
             }
         }
 

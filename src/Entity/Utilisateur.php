@@ -114,6 +114,11 @@ class Utilisateur
      */
     private $dossiers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Visite::class, mappedBy="utilisateur")
+     */
+    private $visites;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
@@ -121,6 +126,7 @@ class Utilisateur
         $this->notes = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->dossiers = new ArrayCollection();
+        $this->visites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -440,6 +446,36 @@ class Utilisateur
             // set the owning side to null (unless already changed)
             if ($dossier->getUtilisateur() === $this) {
                 $dossier->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Visite[]
+     */
+    public function getVisites(): Collection
+    {
+        return $this->visites;
+    }
+
+    public function addVisite(Visite $visite): self
+    {
+        if (!$this->visites->contains($visite)) {
+            $this->visites[] = $visite;
+            $visite->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisite(Visite $visite): self
+    {
+        if ($this->visites->removeElement($visite)) {
+            // set the owning side to null (unless already changed)
+            if ($visite->getUtilisateur() === $this) {
+                $visite->setUtilisateur(null);
             }
         }
 
