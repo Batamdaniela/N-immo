@@ -26,4 +26,9 @@ symfony console make:controller
 # Supprimer complètement Entity de symfony 4
 php bin/console make:migration:diffgénère la migration en comparant la base de données et vos informations
 
+public function __toString()
+{
+    return $this- name;
+}
+
 
