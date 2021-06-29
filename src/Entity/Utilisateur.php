@@ -119,6 +119,11 @@ class Utilisateur
      */
     private $visites;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="agent")
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
@@ -127,6 +132,7 @@ class Utilisateur
         $this->articles = new ArrayCollection();
         $this->dossiers = new ArrayCollection();
         $this->visites = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -485,5 +491,35 @@ class Utilisateur
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getAgent() === $this) {
+                $reservation->setAgent(null);
+            }
+        }
+
+        return $this;
     }
 }

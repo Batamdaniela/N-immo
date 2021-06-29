@@ -85,10 +85,26 @@ class Dossier
      */
     private $dossierCarateristiques;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $id_transaction;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $etat_transaction;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="dossier")
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->dossierCategories = new ArrayCollection();
         $this->dossierCarateristiques = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -282,6 +298,60 @@ class Dossier
             // set the owning side to null (unless already changed)
             if ($dossierCarateristique->getDossier() === $this) {
                 $dossierCarateristique->setDossier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIdTransaction(): ?int
+    {
+        return $this->id_transaction;
+    }
+
+    public function setIdTransaction(int $id_transaction): self
+    {
+        $this->id_transaction = $id_transaction;
+
+        return $this;
+    }
+
+    public function getEtatTransaction(): ?string
+    {
+        return $this->etat_transaction;
+    }
+
+    public function setEtatTransaction(string $etat_transaction): self
+    {
+        $this->etat_transaction = $etat_transaction;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setDossier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getDossier() === $this) {
+                $reservation->setDossier(null);
             }
         }
 

@@ -124,6 +124,11 @@ class Article
      */
     private $notes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="article")
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->visites = new ArrayCollection();
@@ -132,6 +137,7 @@ class Article
         $this->images = new ArrayCollection();
         $this->optionArticles = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -502,5 +508,35 @@ class Article
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getArticle() === $this) {
+                $reservation->setArticle(null);
+            }
+        }
+
+        return $this;
     }
 }
