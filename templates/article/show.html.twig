@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.date ? article.date|'now'|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Vente</th>

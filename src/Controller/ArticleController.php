@@ -91,4 +91,18 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('article_index');
     }
+
+    public function listeVille(Article $article): Response
+    {
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
+        ]);
+    }
+}
+
+public function show(Article $article): Response
+{
+    return $this->render('article/show.html.twig', [
+        'article' => $article,
+    ]);
 }
