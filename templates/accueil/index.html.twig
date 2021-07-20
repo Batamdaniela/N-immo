@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil index{% endblock %}
+
+{% block body %}
+    <h1>Accueil index</h1>
+
+    
+    <a href="{{ path('article_index')}}">Article</a> <br>
+    <a href="{{ path('caracteristique_index')}}">Caractéristique</a> <br>
+    <a href="{{ path('categorie_index')}}">Catégorie</a> <br>
+    <a href="{{ path('utilisateur_index')}}">Utilisateur</a> <br>
+    <a href="{{ path('dossier_index')}}">Dossier</a> <br>
+
+
+
+{% endblock %}

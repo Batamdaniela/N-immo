@@ -15,21 +15,30 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArticleController extends AbstractController
 {
-
-
+ 
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
-/*     public function index(ArticleRepository $articleRepository): Response
-    {
-        $articles = $articleRepository->findAll();
-        return $this->render('article/index.html.twig', compact('articles'));
-    }
- */
- 
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([], ['date'=>'DESC']);
+        return $this->render('article/index.html.twig', compact('articles'));
+    }
+
+    /**
+     * @Route("/", name="", methods={"GET"})
+     */
+
+   public function index_ville(ArticleRepository $articleRepository): Response
+    {
+        // $articles = $articleRepository->findAll();
+        $articles = $articleRepository->findBy([],['ville'=>'ASC']);
+        return $this->render('article/index.html.twig', compact('articles'));
+    }
+ 
+    public function index_categorie(ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findBy([],['ville'=>'ASC']);
         return $this->render('article/index.html.twig', compact('articles'));
     }
 

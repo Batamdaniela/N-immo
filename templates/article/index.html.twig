@@ -3,6 +3,7 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
+
     <h1> {{articles|length}} Article Ajoutés</h1>
 
     <table class="table">
@@ -52,6 +53,39 @@
         {% endfor %}
         </tbody>
     </table>
-
     <a href="{{ path('article_new') }}">Create new</a>
+
+            <table class="table">
+                    {% for article in articles %}
+
+        <thead>
+        <h3>Les articles de la ville de {{article.ville}} </h3>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.nom }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.cout }}</td>
+                <td>{{ article.periodicite }}</td>
+                <td>{{ article.quartier }}</td>
+                <td>{{ article.ville }}</td>
+                <td>{{ article.pays }}</td>
+                <td>{{ article.disponible ? 'Yes' : 'No' }}</td>
+                <td>{{ article.latitude }}</td>
+                <td>{{ article.longitude }}</td>
+                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.vente ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
