@@ -35,6 +35,7 @@ class UtilisateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $utilisateur->setDateCreation(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($utilisateur);
             $entityManager->flush();
@@ -91,4 +92,5 @@ class UtilisateurController extends AbstractController
 
         return $this->redirectToRoute('utilisateur_index');
     }
+ 
 }

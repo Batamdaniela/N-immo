@@ -6,6 +6,7 @@ use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UtilisateurType extends AbstractType
 {
@@ -22,10 +23,10 @@ class UtilisateurType extends AbstractType
             ->add('pays')
             ->add('profession')
             ->add('entreprise')
-            ->add('date_connection')
+            // ->add('date_connection')
             ->add('type')
-            ->add('date_creation')
-            ->add('photo')
+            // ->add('date_creation')
+            ->add('photo', FileType::class)
         ;
     }
 

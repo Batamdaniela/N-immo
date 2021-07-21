@@ -36,6 +36,9 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', compact('articles'));
     }
  
+    /**
+     * @Route("/", name="", methods={"GET"})
+     */
     public function index_categorie(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([],['ville'=>'ASC']);
