@@ -18,6 +18,26 @@ class AccueilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin", name="index_accueil")
+     */
+    public function index_admin(): Response
+    {
+        return $this->render('accueil/admin.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
+    /**
+     * @Route("/admin", name="index_client")
+     */
+    public function index_client(): Response
+    {
+        return $this->render('accueil/admin.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
 /*    
      * @Route("/", name="accueil")
      *

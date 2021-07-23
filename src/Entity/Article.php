@@ -130,6 +130,11 @@ class Article
      */
     private $reservations;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->visites = new ArrayCollection();
@@ -539,5 +544,17 @@ class Article
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
     }
 }

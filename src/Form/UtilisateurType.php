@@ -26,7 +26,9 @@ class UtilisateurType extends AbstractType
             // ->add('date_connection')
             ->add('type')
             // ->add('date_creation')
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class, [
+                'required' => false
+            ])
         ;
     }
 

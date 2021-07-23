@@ -1,0 +1,18 @@
+          /*   ->add('caracteristique', CollectionType::class, [
+                'entry_type' => Caracteristique::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+            ]) */
+/*             ->add('caracteristique', ChoiceType::class, [
+                'choices' => [
+                    'Balcon' => 1
+                ] 
+            ]) */
+/*          ->add('caracteristique', Caracteristique::class, [
+                'nom' => Caracteristique::class,
+                'choice_label' => function($caracteristique) {
+                    return $caracteristique->getDisplayName();
+                }
+            ]) */
+
+            
