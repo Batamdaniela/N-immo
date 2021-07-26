@@ -23,7 +23,8 @@ class AccueilController extends AbstractController
      */
     public function index_admin(): Response
     {
-        return $this->render('accueil/admin.html.twig', [
+        // return $this->render('accueil/admin.html.twig', [
+        return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
         ]);
     }
