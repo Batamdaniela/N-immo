@@ -115,11 +115,7 @@ class Article
      */
     private $images;
 
-    /**
-     * @ORM\OneToMany(targetEntity=OptionArticle::class, mappedBy="article")
-     */
-    private $optionArticles;
-
+ 
     /**
      * @ORM\OneToMany(targetEntity=Note::class, mappedBy="article")
      */
@@ -135,13 +131,17 @@ class Article
      */
     private $photo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=OptionArticle::class, inversedBy="articles")
+     */
+    private $optionArticle;
+
     public function __construct()
     {
         $this->visites = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->favoris = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->optionArticles = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
@@ -452,36 +452,6 @@ class Article
     }
 
     /**
-     * @return Collection|OptionArticle[]
-     */
-    public function getOptionArticles(): Collection
-    {
-        return $this->optionArticles;
-    }
-
-    public function addOptionArticle(OptionArticle $optionArticle): self
-    {
-        if (!$this->optionArticles->contains($optionArticle)) {
-            $this->optionArticles[] = $optionArticle;
-            $optionArticle->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOptionArticle(OptionArticle $optionArticle): self
-    {
-        if ($this->optionArticles->removeElement($optionArticle)) {
-            // set the owning side to null (unless already changed)
-            if ($optionArticle->getArticle() === $this) {
-                $optionArticle->setArticle(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Note[]
      */
     public function getNotes(): Collection
@@ -554,6 +524,18 @@ class Article
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getOptionArticle(): ?OptionArticle
+    {
+        return $this->optionArticle;
+    }
+
+    public function setOptionArticle(?OptionArticle $optionArticle): self
+    {
+        $this->optionArticle = $optionArticle;
 
         return $this;
     }
