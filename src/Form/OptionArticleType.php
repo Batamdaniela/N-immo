@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\OptionArticle;
 use Symfony\Component\Form\AbstractType;
+// use Symfony\Component\Form\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +14,7 @@ class OptionArticleType extends AbstractType
     {
         $builder
             ->add('valeur')
-            ->add('article')
-            ->add('caracteristique')
-        ;
+            ->add('caracteristique');
     }
 
     public function configureOptions(OptionsResolver $resolver)

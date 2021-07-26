@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article")
+ * @Route("/article/client")
  */
 class ArticleController extends AbstractController
 {
@@ -21,8 +21,11 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findBy([], ['date'=>'DESC']);
-        return $this->render('article/index.html.twig', compact('articles'));
+        // $articles = $articleRepository->findBy([], ['date'=>'DESC']);
+
+        return $this->render('article/index.html.twig', [
+            'articles' => $articleRepository->findBy([], ['date'=>'DESC']),
+        ]);
     }
 
     /**

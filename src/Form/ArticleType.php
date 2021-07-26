@@ -47,6 +47,7 @@ class ArticleType extends AbstractType
             //->add('date')
             ->add('vente')
             ->add('utilisateur')
+            ->add('optionArticle')
             ->add('proprietaire')
             ->add('categorie')
             ->add('photo', FileType::class, [

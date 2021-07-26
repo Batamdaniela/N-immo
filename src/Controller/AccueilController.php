@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController
 {
     /**
-     * @Route("/", name="index_accueil")
+     * @Route("/accueil", name="index_accueil")
      */
     public function index(): Response
     {
@@ -19,25 +19,45 @@ class AccueilController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="index_accueil")
+     * @Route("/admin", name="index_admin")
      */
     public function index_admin(): Response
     {
-        // return $this->render('accueil/admin.html.twig', [
-        return $this->render('accueil/index.html.twig', [
+        return $this->render('categorie/admin/admin.html.twig', [
             'controller_name' => 'AccueilController',
         ]);
     }
 
     /**
-     * @Route("/admin", name="index_client")
+     * @Route("/agent", name="index_agent")
      */
-    public function index_client(): Response
+    public function index_agent(): Response
     {
-        return $this->render('accueil/admin.html.twig', [
+        return $this->render('accueil/agent.html.twig', [
             'controller_name' => 'AccueilController',
         ]);
     }
+
+    /**
+     * @Route("/client", name="index_client1")
+     */
+    public function index_client(): Response
+    {
+        return $this->render('accueil/client.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
+        /**
+     * @Route("/client/article", name="client_article")
+     */
+    public function client_article(): Response
+    {
+        return $this->render('article/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
 
 /*    
      * @Route("/", name="accueil")
@@ -48,4 +68,15 @@ class AccueilController extends AbstractController
     } */
 
 
+    /**
+     * @Route("/categorie/client", name="index_client")
+     */
+
+
+    public function categorie_client(): Response
+    {
+        return $this->render('categorie/client/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
 }
