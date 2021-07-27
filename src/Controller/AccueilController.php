@@ -39,7 +39,7 @@ class AccueilController extends AbstractController
     }
 
     /**
-     * @Route("/client", name="index_client1")
+     * @Route("/client", name="index_clien")
      */
     public function index_client(): Response
     {

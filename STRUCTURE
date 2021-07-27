@@ -1,0 +1,42 @@
+Table manquante:
+	recommandation
+ok	Reservation
+
+lier dossier et dossier_cat, dossier_carac
+
+supprimer la liason recherche et Catégorie
+lier recherche à dossier
+
+/accueil
+	/favori
+	/recommandation
+	/historique
+/client
+	/article
+		/noter
+		/favori
+		/detail
+/visiter_un_bien (ouvrir un dossier)
+/demander_un_rdv
+	/mon_espace
+		/mon_profil
+		/favoris (lister les favoris)
+		/historique
+		/dossier (lister les dossiers ouverts)
+			/dossier ouvert
+			/dossier fermé
+		/rdv (afficher les rdv)
+/agent
+	/article
+		/ajouter
+		/afficher
+/mon_espace
+	/mon_profil
+	/mes_articles
+/admin
+	/statistique
+		/article (article posté par jour/mois/semaine/annee)
+	
+	/espace_client_id
+		/favoris (lister les favoris)
+		/article_noté

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article/client")
+ * @Route("/article")
  */
 class ArticleController extends AbstractController
 {
@@ -28,9 +28,10 @@ class ArticleController extends AbstractController
         ]);
     }
 
+/*     r
     /**
-     * @Route("/", name="", methods={"GET"})
-     */
+     * @Route("/", name="article_index_ville", methods={"GET"})
+     
 
    public function index_ville(ArticleRepository $articleRepository): Response
     {
@@ -40,14 +41,14 @@ class ArticleController extends AbstractController
     }
  
     /**
-     * @Route("/", name="", methods={"GET"})
-     */
+     * @Route("/", name="article_index_categorie", methods={"GET"})
+     
     public function index_categorie(ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findBy([],['ville'=>'ASC']);
+        $articles = $articleRepository->findBy([],['categorie'=>'ASC']);
         return $this->render('article/index.html.twig', compact('articles'));
     }
-
+ */
     /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */

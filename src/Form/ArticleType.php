@@ -23,17 +23,17 @@ class ArticleType extends AbstractType
             ->add('cout')
             ->add('periodicite', ChoiceType::class,[
                 'choices' => [
-                    'Jour' => 1,
-                    'Mois' => 2,
-                    'An' => 3
+                    'Jour' => 'Jour',
+                    'Mois' => 'Mois',
+                    'An' => 'An'
                 ]
             ])
             ->add('quartier')
             ->add('ville', ChoiceType::class,[
                 'choices' => [
-                    'Douala' => 1,
-                    'Yaounde' => 2,
-                    'Kribi' => 3
+                    'Douala' => 'Douala',
+                    'Yaounde' => 'Yaounde',
+                    'Kribi' => 'Kribi'
                 ]
             ])
             ->add('pays', ChoiceType::class, [

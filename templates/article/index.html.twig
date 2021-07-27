@@ -79,6 +79,8 @@
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('favori_new', {'id': article.id}) }}">Favori</a>
+                    <a href="#">Reserver</a>
                 </td>
             </tr>
         {% else %}

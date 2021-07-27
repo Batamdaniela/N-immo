@@ -12,7 +12,7 @@ class FavoriType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
+            // ->add('date')
             ->add('utilisateur')
             ->add('article')
         ;
