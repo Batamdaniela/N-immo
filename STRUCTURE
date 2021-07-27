@@ -1,3 +1,8 @@
+/**
+     * @ORM\Column(type="string", length=191, unique=true)
+     */
+    private $email;
+
 Table manquante:
 	recommandation
 ok	Reservation

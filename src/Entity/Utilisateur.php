@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,13 +32,16 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="integer")
+     * 
      */
-    private $telephone1;
+    protected $telephone1;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotIdenticalTo("$telephone2")
+     * 
      */
-    private $telephone2;
+    protected $telephone2;
 
     /**
      * @ORM\Column(type="string", length=255)
